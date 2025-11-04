@@ -1,4 +1,4 @@
-# 🧠 AI Chatbot & E-commerce API Testing Project
+#  E-commerce API Testing Project
 
 This project showcases my ability to perform **API and conversational testing** using **Postman**, as part of my application for a **Testing Intern** role.  
 It simulates how a QA Engineer validates an e-commerce API system and ensures the chatbot or order service behaves correctly.
