@@ -1,0 +1,175 @@
+{
+  "Order_id": 23,
+  "Customer_id": 1111,
+  "status": "Processing",
+  "items": [
+    {
+      "product_id": 701,
+      "variant_id": 6452,
+      "quantity": "2 items",
+      "price": 400,
+      "subtotal": 800
+    }
+  ]
+}
+
+1️⃣ GET /orders
+
+Purpose: Verify if orders are fetched correctly
+Tests:
+
+pm.test("Status code is 200", function () {
+    pm.response.to.have.status(200);
+});
+
+pm.test("Response time is less than 800ms", function () {
+    pm.expect(pm.response.responseTime).to.be.below(800);
+});
+
+pm.test("Response should be in JSON format", function () {
+    pm.response.to.be.json;
+});
+
+pm.test("Orders array is not empty", function () {
+    var jsonData = pm.response.json();
+    pm.expect(jsonData.orders.length).to.be.above(0);
+});
+
+pm.test("Each order should have Order_id and status", function () {
+    var jsonData = pm.response.json();
+    jsonData.orders.forEach(order => {
+        pm.expect(order).to.have.property("Order_id");
+        pm.expect(order).to.have.property("status");
+    });
+});
+
+2️⃣ GET /orders/:id
+
+Purpose: Fetch a single order
+Tests:
+
+pm.test("Status code is 200 or 404 for invalid ID", function () {
+    pm.expect([200, 404]).to.include(pm.response.code);
+});
+
+pm.test("If 200, Order data should have total_amount field", function () {
+    if (pm.response.code === 200) {
+        let order = pm.response.json();
+        pm.expect(order).to.have.property("total_amount");
+    }
+});
+
+3️⃣ POST /createOrder
+
+Purpose: Add a new order
+Tests:
+
+pm.test("Status code is 201 (Created)", function () {
+    pm.response.to.have.status(201);
+});
+
+pm.test("Response time below 1s", function () {
+    pm.expect(pm.response.responseTime).to.be.below(1000);
+});
+
+pm.test("New order should return an ID", function () {
+    let jsonData = pm.response.json();
+    pm.expect(jsonData).to.have.property("Order_id");
+});
+
+
+Request Body Example:
+
+{
+  "Order_id": 25,
+  "Customer_id": 2001,
+  "status": "Processing",
+  "items": [
+    { "product_id": 701, "variant_id": 6452, "quantity": "2 items", "price": 400 }
+  ]
+}
+
+4️⃣ PUT /updateStatus/:id
+
+Purpose: Update the status of an existing order
+Tests:
+
+pm.test("Status code is 200", function () {
+    pm.response.to.have.status(200);
+});
+
+pm.test("Response contains updated status", function () {
+    let jsonData = pm.response.json();
+    pm.expect(jsonData.status).to.eql("Delivered");
+});
+
+
+Request Body Example:
+
+{
+  "status": "Delivered"
+}
+
+5️⃣ DELETE /cancelOrder/:id
+
+Purpose: Cancel an order by ID
+Tests:
+
+pm.test("Status code is 204 (Deleted)", function () {
+    pm.response.to.have.status(204);
+});
+
+pm.test("Response should be empty after delete", function () {
+    pm.expect(pm.response.text()).to.eql('');
+});
+
+6️⃣ GET /payments
+
+Purpose: Verify payment details
+Tests:
+
+pm.test("Payments data is valid", function () {
+    var data = pm.response.json();
+    data.forEach(p => {
+        pm.expect(p).to.have.property("method");
+        pm.expect(p).to.have.property("status");
+    });
+});
+
+pm.test("Payment method should be either UPI or CashOnDelivery", function () {
+    var data = pm.response.json();
+    data.forEach(p => {
+        pm.expect(["UPI", "CashOnDelivery"]).to.include(p.method);
+    });
+});
+
+7️⃣ Response Schema Validation
+
+If you want to show an advanced test (bonus for selection 👇):
+
+const schema = {
+    "type": "object",
+    "properties": {
+        "Order_id": { "type": "number" },
+        "Customer_id": { "type": "number" },
+        "status": { "type": "string" },
+        "items": { "type": "array" }
+    },
+    "required": ["Order_id", "Customer_id", "status"]
+};
+
+pm.test("Schema validation", function () {
+    pm.response.to.have.jsonSchema(schema);
+});
+
+8️⃣ Negative Test – Invalid Endpoint
+
+Purpose: Ensure correct error handling
+
+pm.test("Invalid endpoint returns 404", function () {
+    pm.response.to.have.status(404);
+});
+
+pm.test("Error message is user-friendly", function () {
+    const data = pm.response.json();
+    pm.expect(data.message).to.include("not found");
