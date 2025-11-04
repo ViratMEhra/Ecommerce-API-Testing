@@ -1,7 +1,11 @@
 #  E-commerce API Testing Project
 
 This project showcases my ability to perform **API and conversational testing** using **Postman**, as part of my application for a **Testing Intern** role.  
-It simulates how a QA Engineer validates an e-commerce API system and ensures the chatbot or order service behaves correctly.
+It simulates how a QA Engineer validates an e-commerce API system
+
+Created a mock e-commerce API to simulate real-world order and payment systems, then performed comprehensive testing using Postman.
+Focused on verifying API functionality, response validation, and error handling through multiple test cases.
+Demonstrated strong understanding of manual and automated API testing workflows.
 
 
 
