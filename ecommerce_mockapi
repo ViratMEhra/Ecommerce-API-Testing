@@ -1,0 +1,59 @@
+
+ 📦 2. **ecommerce_api.json**
+(Paste your mock API data here)
+
+json
+{
+  "orders": [
+    {
+      "Order_id": 21,
+      "Customer_id": 15234,
+      "status": "Delivered",
+      "items": [
+        {
+          "product_id": 500,
+          "variant_id": 6231,
+          "quantity": "5 items",
+          "price": 1200,
+          "subtotal": 2200
+        }
+      ],
+      "total_amount": {
+        "subtotal": 5000,
+        "tax": "2%",
+        "shipping_cost": 200,
+        "discount": 200,
+        "grand_total": 3200
+      },
+      "payment": {
+        "method": "UPI",
+        "status": "Paid"
+      }
+    },
+    {
+      "Order_id": 22,
+      "Customer_id": 1523,
+      "status": "Departed",
+      "items": [
+        {
+          "product_id": 600,
+          "variant_id": 6232,
+          "quantity": "3 items",
+          "price": 200,
+          "subtotal": 900
+        }
+      ],
+      "total_amount": {
+        "subtotal": 2600,
+        "tax": "3%",
+        "shipping_cost": 120,
+        "discount": 85,
+        "grand_total": 1300
+      },
+      "payment": {
+        "method": "CashOnDelivery",
+        "status": "Pending"
+      }
+    }
+  ]
+}
