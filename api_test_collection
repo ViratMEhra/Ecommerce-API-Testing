@@ -145,8 +145,6 @@ pm.test("Payment method should be either UPI or CashOnDelivery", function () {
 
 7️⃣ Response Schema Validation
 
-If you want to show an advanced test (bonus for selection 👇):
-
 const schema = {
     "type": "object",
     "properties": {
