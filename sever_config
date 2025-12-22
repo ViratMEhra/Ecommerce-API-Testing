@@ -1,1 +1,13 @@
+Since I didn’t have a real backend, I used json-server to simulate one.
+First, I created a db.json file that contained structured e-commerce data such as users, products, cart, orders, payments, and notifications. This file acted as my mock database.
 
+npx json-server --watch db.json --port 3000
+
+API	Endpoint
+Users	http://localhost:3000/users
+Products	http://localhost:3000/products
+Cart	http://localhost:3000/cart
+Orders	http://localhost:3000/orders
+Returns	http://localhost:3000/returns
+Reviews	http://localhost:3000/reviews
+Notifications	http://localhost:3000/notifications
