@@ -1,77 +1,127 @@
-#  E-commerce API Testing Project
+🛒 E-commerce API Testing Project (Postman)
+📌 Project Overview
 
-This project showcases my ability to perform **API and conversational testing** using **Postman**, as part of my application for a **Testing Intern** role.  
-It simulates how a QA Engineer validates an e-commerce API system
+This project focuses on end-to-end API testing of a real-world e-commerce system using Postman.
+The goal was to understand how backend APIs work in actual products and to validate critical business flows such as authentication, cart, orders, payments, returns, and notifications.
 
-Created a mock e-commerce API to simulate real-world order and payment systems, then performed comprehensive testing using Postman.
-Focused on verifying API functionality, response validation, and error handling through multiple test cases.
-Demonstrated strong understanding of manual and automated API testing workflows.
+Instead of testing isolated APIs, I designed this project to reflect how a real production system behaves, where data is interconnected and flows from login → cart → order → delivery.
 
+🎯 Objectives
 
+Validate core e-commerce functionalities using API testing
 
-## 🧩 Project Components
+Practice realistic backend data structures
 
-### 🧪 Postman Test Collection
-The **`api_test_collection.json`** file contains automated test scripts for:
-- Fetching orders, items, and payments  
-- Creating and updating orders  
-- Schema validation  
-- Negative testing for invalid endpoints  
+Write robust Postman test scripts covering positive, negative, and edge cases
 
-These tests cover:
-- Response codes (200, 201, 204, 404)
-- Performance (response time)
-- Data validation and integrity
-- Error handling
+Use Postman environments for reusability and scalability
 
+Version-control the testing setup using GitHub
 
+🧩 APIs Covered
 
-### 🧰 Mock API
-File: **`mock_api.json`**  
-Represents a simulated E-commerce API backend containing:
-- Orders and order attributes  
-- Items purchased  
-- Total amount calculations  
-- Payment information  
+The project includes testing for the following modules:
 
-This mock data allows testing without a live backend.
+🔐 Authentication (Login, Token handling)
 
----
+👤 User Profile
 
-### 🧾 Sample Test Cases
-| Test Type | Endpoint | Purpose | Expected Result |
-|------------|-----------|----------|----------------|
-| GET | `/orders` | Retrieve all orders | Status 200 |
-| GET | `/orders/:id` | Retrieve one order | Status 200 or 404 |
-| POST | `/createOrder` | Create new order | Status 201 |
-| PUT | `/updateStatus/:id` | Update order | Status 200 |
-| DELETE | `/cancelOrder/:id` | Delete order | Status 204 |
-| GET | `/payments` | Validate payments | Valid UPI/COD |
-| NEGATIVE | `/wrongURL` | Invalid request | Status 404 |
+🛍 Products & Categories
 
+🛒 Cart Management
 
+📦 Orders & Order Status
 
+💳 Payments (UPI, Cash on Delivery)
 
+🔁 Returns & Refunds
 
+⭐ Reviews
 
-### 🧠 Skills Demonstrated
-- REST API validation using **Postman**
-- JSON response testing and schema validation
-- Use of assertions, loops, and conditions
-- Mock API creation for independent testing
-- Documentation & reporting (as a QA Intern)
+🔔 Notifications
 
+Each API is linked using IDs (user_id, product_id, order_id) to simulate real backend relationships.
 
+🧪 Testing Approach
 
-### 🚀 How to Run
-1. Open Postman  
-2. Import `api_test_collection.json`  
-3. Set base URL (e.g., `https://mockapi.io/projects/<id>`)  
-4. Click **Run Collection**  
-5. Review test results in the Postman console
+I used Postman test scripts (JavaScript) to validate:
 
+Status codes & response times
 
-### 👨‍💻 Author
-**Virat Mehra**  
-*Testing Intern — API & Conversational QA Enthusiast*  
+Data integrity (IDs, totals, payment status)
 
+Business logic (Delivered orders must be paid, COD orders remain pending)
+
+Calculations (cart total, grand total, refunds)
+
+Schema structure & required fields
+
+Authorization and security checks
+
+This approach ensures both functional correctness and data reliability.
+
+🌍 Postman Environment
+
+A dedicated Postman environment is used to manage:
+
+Base URL
+
+Access & refresh tokens
+
+User, product, cart, and order IDs
+
+This makes the test suite dynamic, reusable, and easy to scale across different environments (local, staging, QA).
+
+🛠 Tools & Technologies Used
+
+Postman – API testing & automation
+
+JavaScript – Test scripting
+
+Postman Environments – Variable management
+
+Mock APIs / json-server – Backend simulation
+
+GitHub – Version control & project sharing
+
+▶️ How to Run This Project
+
+Import the Postman Collection
+
+Import the Postman Environment JSON
+
+Select the environment in Postman
+
+Run the login API first to generate tokens
+
+Execute other APIs individually or using Collection Runner
+
+📈 What I Learned
+
+How real e-commerce APIs are structured
+
+How authentication tokens are handled across APIs
+
+Writing meaningful Postman tests beyond basic status checks
+
+Designing reusable environments for scalable testing
+
+Thinking like a QA engineer from a business + technical perspective
+
+💬 Why This Project Matters
+
+This project demonstrates my ability to:
+
+Understand backend systems without UI dependency
+
+Write structured, maintainable API tests
+
+Validate complex workflows using data-driven testing
+
+Prepare test assets that are production and interview ready
+
+👤 Author
+
+Virat Mehra
+QA / Software Testing Enthusiast
+Focused on Manual Testing, API Testing, and Automation Basics
